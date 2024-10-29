@@ -32,8 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
             this.node.src = this.path;
             this.node.style.opacity = 0; 
             intro.append(this.node);
+
             if (this.index === 0 || this.index === 2) {
                 this.node.style.height = "200px";
+            } else if (this.index === 3) {
+                this.node.style.height = "85px";
             }
 
             this.node.addEventListener('load', this.handleLoad.bind(this));
@@ -154,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 setTimeout( () => {
                     this.node.style.zIndex = 1;
                     this.overview.style.zIndex = 0;
-                }, 300)
+                }, 100)
             });
         }
     }
