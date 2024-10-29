@@ -1,12 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Oswald:wght@200..700&display=swap');
 
 :root {
-    --background: #F8F9FA;
+    --background: #f8f5e4;
     --primary: #000000;
-    /* --secondary: #a0a0a0;
-    --green: #00a67e;
-    --link: #3399ff;
-    --red: #d32f2f; */
 }
   
 * {
@@ -25,12 +21,12 @@ body {
 }
 
 #nav-bar {
-    width: 100%;
+    width: 36%;
     height: 125px;
     display: flex;
     align-items: center;
     position: absolute;
-    z-index: 1;
+    z-index: 2;
 }
 
 #logo {
@@ -40,11 +36,12 @@ body {
 
 #nav-bar ul {
     margin-left: 3%;
-    width: 33%;
+    width: 100%;
     list-style: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 #nav-bar a {
@@ -56,6 +53,13 @@ body {
     position: relative;
     color: black;
     text-decoration: none;
+    transform: translateX(-50px);
+    opacity: 0; 
+    transition: opacity 300ms ease;
+}
+
+.underline-anim.animate-in {
+    animation: slideIn 1s forwards; 
 }
 
 .underline-anim::after {
@@ -77,20 +81,48 @@ body {
 #intro {
     width: 100%;
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
 }
 
 .project-img {
     height: 150px;
+    position: absolute; 
     width: auto;
     filter: grayscale(100%) brightness(70%);
-    /* transition: left 1.5s ease, top 1.5s ease; */
-    transition: opacity 1500ms ease;
-    position: absolute; 
-    /* left: 50%; 
-    top: 50%;  */
-    /* transform: translate(-50%, -50%); */
+    transition: opacity 1500ms ease, filter 500ms ease-in-out;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.project-overview {
+    position: absolute;
+    background-color: #343A40;
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
+    z-index: 0;
+    display: flex;
+    border: none;
+    border-radius: 1px;
+}
+
+.project-overview > div {
+    height: 100%;
+    width: 280px;
+    position: absolute;
+}
+
+.project-overview > div > p {
+    color: #f8f5e4;
+    opacity: 1;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-75px); 
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0); 
+        opacity: 1;
+    }
 }
