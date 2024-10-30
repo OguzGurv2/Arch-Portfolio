@@ -34,9 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
             intro.append(this.node);
 
             if (this.index === 0 || this.index === 2) {
-                this.node.style.height = "200px";
+                this.node.style.height = "150px";
             } else if (this.index === 3) {
-                this.node.style.height = "85px";
+                this.node.style.height = "75px";
             }
 
             this.node.addEventListener('load', this.handleLoad.bind(this));
@@ -123,6 +123,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     this.overview = intro.lastElementChild;
                     this.info = this.overview.querySelector("div");
         
+                    if (this.index === 3) {
+                        this.info.querySelector("p").classList.add("limit-lines")
+                    }
+
                     this.overview.style.width = `${this.node.clientWidth + 310}px`;
                     this.overview.style.height = `${this.node.clientHeight + 20}px`;
                     this.info.style.top = "10px";
@@ -135,7 +139,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                     this.overview.style.top = `${this.y - 10}px`;
 
-                    this.info.querySelector("p").textContent = `${this.id}` + this.info.querySelector("p").textContent ;
+                    const projectTitle = this.id.replaceAll("-", " ");
+
+                    this.info.querySelector("a").textContent =  projectTitle;
                     this.handleHover();
                 }
             });
@@ -145,8 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
             this.node.addEventListener("mouseover", () => {
                 this.node.style.zIndex = 99;
                 this.overview.style.zIndex = 98;
-
-                this.overview.style.opacity = 0.8; 
+                this.overview.style.opacity = 1; 
                 this.node.style.filter = "grayscale(0%) brightness(100%)"
             });
 
@@ -154,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 this.overview.style.opacity = 0; 
                 this.node.style.filter = "grayscale(100%) brightness(70%)"
                 
-                setTimeout( () => {
+                setTimeout(() => {
                     this.node.style.zIndex = 1;
                     this.overview.style.zIndex = 0;
                 }, 100)
@@ -165,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".underline-anim").forEach((navElem, index) => {
         setTimeout(() => {
             navElem.classList.add("animate-in");
-        }, index * 300); 
+        }, index * 500); 
     });
     
     const directoryPath = "./src/content/projects/";
