@@ -15,10 +15,17 @@
 
 body {
     background-color: var(--primary-background);
+    scroll-behavior: smooth;
 }
 
 a {
     text-decoration: none;
+}
+
+section {
+    height: 100vh;
+    width: 100%;
+    position: relative;
 }
 
 .oswald-400 {
@@ -93,12 +100,6 @@ a {
     left: 0;
 }
 
-#intro {
-    width: 100%;
-    height: 100vh;
-    position: relative;
-}
-
 .project-img {
     height: 150px;
     position: absolute; 
@@ -118,7 +119,6 @@ a {
     display: flex;
     border: none;
     border-radius: 2px;
-    cursor: initial;
 }
 
 .project-overview > div {
@@ -128,6 +128,7 @@ a {
 }
 
 .project-overview > div > p {
+    cursor: default;
     color: var(--secondary-text);
 }
 
@@ -138,6 +139,10 @@ a {
     text-overflow: ellipsis; 
     -webkit-line-clamp: 3; 
     line-clamp: 3; 
+}
+
+#projects {
+    background-color: #343A40;
 }
 
 @keyframes slideIn {
