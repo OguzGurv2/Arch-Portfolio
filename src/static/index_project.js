@@ -2,7 +2,6 @@ export class Project {
     static list = [];
     static loadedCount = 0;
     static positioningIndex = 0;
-    static isLoadingFinished = false;
 
     static positionImages() {
         if (this.positioningIndex < this.list.length) {
@@ -12,7 +11,8 @@ export class Project {
             
             setTimeout(() => this.positionImages(), 1000); 
         } else {
-            Project.isLoadingFinished = true;
+            about.style.display = "grid";
+            about.style.height = "200vh";
         }
     }    
 
@@ -74,7 +74,7 @@ export class Project {
 
         this.x = Math.floor(Math.random() * (maxX - min)) + min;
         if (Math.floor((this.x / intro.clientWidth) * 100) < 36) {
-            this.y = Math.floor(Math.random() * (maxY - 116) + 116);
+            this.y = Math.floor(Math.random() * (maxY - 91) + 91);
         } else {
             this.y = Math.floor(Math.random() * (maxY - min)) + min;
         }
