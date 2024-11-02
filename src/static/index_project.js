@@ -63,7 +63,7 @@ export class Project {
 
         this.node.style.left = `${this.x}px`; 
         this.node.style.top = `${this.y}px`;
-        this.node.style.opacity = 1; 
+        this.node.classList.add("fade-in"); 
         this.createOverview();
     }
 

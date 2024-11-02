@@ -54,10 +54,6 @@ section {
     font-weight: 200;
 }
 
-.animate-in {
-    animation: slideIn 1s forwards; 
-}
-
 #intro {
     height: 100vh;
     display: flex;
@@ -98,7 +94,6 @@ section {
     text-decoration: none;
     transform: translateX(-50px);
     opacity: 0; 
-    transition: opacity 300ms ease;
 }
 
 .underline-anim::after {
@@ -122,7 +117,7 @@ section {
     position: absolute; 
     width: auto;
     filter: grayscale(100%) brightness(70%);
-    transition: opacity 1500ms ease, filter 500ms ease-in-out;
+    transition: filter 500ms ease-in-out;
     cursor: pointer;
     z-index: 1;
 }
@@ -207,11 +202,6 @@ section {
     overflow-y: hidden;
 }
 
-#about li.fade-in {
-    opacity: 1;
-    transform: translateY(0);
-}
-
 #about > div > ul > li > h1 {
     font-size: 17px;
 }
@@ -224,8 +214,33 @@ section {
     font-size: 15px;
 }
 
+.dotted-line {
+    width: 4px; 
+    height: 4px; 
+    background-image: radial-gradient(circle, var(--secondary-background) 50%, transparent 50%);
+    background-size: 4px 4px;
+    background-repeat: repeat-y;
+    opacity: 0;
+}
+
 #projects {
     background-color: var(--secondary-background);
+}
+
+.slide-in {
+    animation: slideIn 1s forwards; 
+}
+
+.fade-in {
+    animation: fadeIn 1500ms forwards; 
+}
+
+.grow-height {
+    animation: growHeight 500ms forwards; 
+}
+
+.grow-width {
+    animation: growWidth var(--delay) forwards; 
 }
 
 @keyframes slideIn {
@@ -236,5 +251,34 @@ section {
     to {
         transform: translateX(0); 
         opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes growHeight {
+    0% {
+        height: 4px; 
+        opacity: 1; 
+    }
+    100% {
+        height: var(--final-height); 
+    }
+}
+
+@keyframes growWidth {
+    0% {
+        width: 4px; 
+        opacity: 1; 
+    }
+    100% {
+        width: var(--final-width); 
     }
 }

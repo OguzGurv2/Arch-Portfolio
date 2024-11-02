@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll(".underline-anim").forEach((navElem, index) => {
         setTimeout(() => {
-            navElem.classList.add("animate-in");
+            navElem.classList.add("slide-in");
         }, index * 500); 
     });
 
@@ -56,14 +56,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 observer.unobserve(entry.target);
                 if (entry.target.id == "first-milestones") {
                     window.removeEventListener("scroll", observeMilestone1);
-                    setTimeout(() => {
-                        new Path(milestoneList1.querySelector(".canvas"), milestoneList2.querySelector(".canvas"));
-                    }, 1000)
+                    new Path(milestoneList1.querySelector(".canvas"), milestoneList2.querySelector(".canvas"));
                 } else if (entry.target.id == "second-milestones") {
                     window.removeEventListener("scroll", observeMilestone2);   
                 } else {
-                    aboutHeader.classList.add("animate-in");
-
+                    aboutHeader.classList.add("slide-in");
                     window.removeEventListener("scroll", observeAboutHeader);   
                 }
             }
@@ -103,8 +100,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             setTimeout(() => {
-                milestone.classList.add("fade-in");
-            }, 500 * t);
+                milestone.classList.add("slide-in");
+            }, 500 * t + 500);
         });
     }
 });
