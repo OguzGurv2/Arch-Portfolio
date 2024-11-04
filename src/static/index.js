@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(() => {
         [aboutHeader, milestoneList1, milestoneList2, projectsHeader].forEach(element => milestonesObserver.observe(element));
-        sections.forEach( (section, i) => {
-            if (i ==! 0) {
+        sections.forEach((section, i) => {
+            if (i !== 0) {
                 sectionObserver.observe(section);
             }
         });
@@ -42,9 +42,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const navLinks = document.querySelectorAll('#nav-bar a');
     navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            const targetSection = document.querySelector(this.getAttribute('href'));
-            targetSection.scrollIntoView({ behavior: 'smooth' , block: 'start' });
+        link.addEventListener('click', function(event) { 
+            event.preventDefault(); 
+            const targetSection = document.querySelector(this.getAttribute('href')); 
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
 
@@ -92,17 +93,18 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
     
-    const updateScrollPosition = debounce(() => {
+    const updateScrollPosition = debounce((e) => {
         lastScrollY = window.scrollY; 
+        e.preventDefault();
         if (sectionObservable) {
             sectionObservable = false;
             targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-    }, 300); 
+    }, 100); 
     
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-            if (entry.isIntersecting && lastScrollY < window.scrollY) {
+            if (entry.intersectionRatio >= 0.1 && lastScrollY < window.scrollY) {
                 targetSection = entry.target;
                 sectionObservable = true;
             }

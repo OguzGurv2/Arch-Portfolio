@@ -211,7 +211,7 @@ section {
     display: flex;
     height: 90vh;
     width: 90%;
-    padding: 5%;
+    padding: 5vh 5%;
 }
 
 #projects-header {
