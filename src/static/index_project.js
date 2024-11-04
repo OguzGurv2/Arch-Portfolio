@@ -10,9 +10,6 @@ export class Project {
             this.positioningIndex++;
             
             setTimeout(() => this.positionImages(), 1000); 
-        } else {
-            about.style.display = "grid";
-            about.style.height = "200vh";
         }
     }    
 

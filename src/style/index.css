@@ -14,13 +14,7 @@
 }
 
 html {
-    -ms-overflow-style: none; 
-    scrollbar-width: none; 
-}
-
-html::-webkit-scrollbar {
-    width: 0px;
-    background: transparent; 
+    scroll-behavior: smooth;
 }
 
 body {
@@ -33,10 +27,8 @@ a {
 }
 
 section {
-    height: 0;
     width: 100%;
     position: relative;
-    display: none;
 }
 
 .oswald-400 {
@@ -94,13 +86,14 @@ section {
     text-decoration: none;
     transform: translateX(-50px);
     opacity: 0; 
+    font-size: 19px;
 }
 
 .underline-anim::after {
     content: '';
     position: absolute;
     width: 0;
-    height: 1.25px;
+    height: 1.5px;
     bottom: 0;
     left: 50%;
     background-color: black;
@@ -154,27 +147,33 @@ section {
 }
 
 #about {
-    grid-template-rows: 1fr 1fr;
-}
-
-#about > .milestone-container {
-    padding: 5% 0% 0% 5%;
-    width: 90%;
-    color: var(--secondary-background);
-    display: grid;
+    height: max-content;
 }
 
 #about-header {
     transform: translateX(-50px);
     opacity: 0; 
     transition: opacity 300ms ease;
+    font-size: 25px;
+    position: absolute;
+    top: 3.75%;
+    left: 5%;
+}
+
+#about > .milestone-container {
+    width: 92.5%;
+    color: var(--secondary-background);
+    display: grid;
+    height: auto;
 }
 
 #first-milestones {
+    padding: 7.5% 2.5% 2.5% 5%;
     grid-template-columns: 1.25fr 0.75fr;
 }
 
 #second-milestones {
+    padding: 2.5% 2.5% 5% 5%;
     grid-template-columns: 0.75fr 1.25fr;
 }
 
@@ -182,28 +181,22 @@ section {
     position: relative;
     list-style: none;
     width: 100%;
-    height: 95%;
+    height: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    padding-top: 5%;
-}
-
-#about > div > ul > h1 {
-    font-size: 21px;
-    position: absolute;
-    top: -20px;
-    left: 0;
+    row-gap: 40px;
 }
 
 #about li {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 500ms ease, transform 500ms ease;
-    overflow-y: hidden;
+    width: 100%;
+    height: auto;
 }
 
 #about > div > ul > li > h1 {
-    font-size: 17px;
+    font-size: 21px;
 }
 
 #about h2 {
@@ -211,20 +204,24 @@ section {
 }
 
 #about p, #about h2 {
-    font-size: 15px;
-}
-
-.dotted-line {
-    width: 4px; 
-    height: 4px; 
-    background-image: radial-gradient(circle, var(--secondary-background) 50%, transparent 50%);
-    background-size: 4px 4px;
-    background-repeat: repeat-y;
-    opacity: 0;
+    font-size: 19px;
 }
 
 #projects {
-    background-color: var(--secondary-background);
+    display: flex;
+    height: 90vh;
+    width: 90%;
+    padding: 5%;
+}
+
+#projects-header {
+    transform: translateX(-50px);
+    opacity: 0; 
+    transition: opacity 300ms ease;
+    font-size: 25px;
+    position: absolute;
+    top: 3.75%;
+    left: 5%;
 }
 
 .slide-in {
@@ -233,14 +230,6 @@ section {
 
 .fade-in {
     animation: fadeIn 1500ms forwards; 
-}
-
-.grow-height {
-    animation: growHeight 500ms forwards; 
-}
-
-.grow-width {
-    animation: growWidth var(--delay) forwards; 
 }
 
 @keyframes slideIn {
@@ -260,25 +249,5 @@ section {
     }
     to {
         opacity: 1;
-    }
-}
-
-@keyframes growHeight {
-    0% {
-        height: 4px; 
-        opacity: 1; 
-    }
-    100% {
-        height: var(--final-height); 
-    }
-}
-
-@keyframes growWidth {
-    0% {
-        width: 4px; 
-        opacity: 1; 
-    }
-    100% {
-        width: var(--final-width); 
     }
 }
