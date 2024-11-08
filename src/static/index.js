@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const aboutHeader = document.querySelector("#about-header");
     const milestoneList1 = document.querySelector("#first-milestones");
     const milestoneList2 = document.querySelector("#second-milestones");
-    const projectsHeader = document.querySelector("#projects-header");
 
     let lastScrollY = window.scrollY;
     let sectionObservable = false;
@@ -22,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     intro.scrollIntoView({ behavior: 'smooth' , block: 'start' });
 
     setTimeout(() => {
-        [aboutHeader, milestoneList1, milestoneList2, projectsHeader].forEach(element => milestonesObserver.observe(element));
+        [aboutHeader, milestoneList1, milestoneList2].forEach(element => milestonesObserver.observe(element));
         sections.forEach((section, i) => {
             if (i !== 0) {
                 sectionObserver.observe(section);
