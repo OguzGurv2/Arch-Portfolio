@@ -10,9 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const sections = document.querySelectorAll("section");
     const intro = sections[0];
-    const aboutHeader = document.querySelector("#about-header");
-    const milestoneList1 = document.querySelector("#first-milestones");
-    const milestoneList2 = document.querySelector("#second-milestones");
+    const about = sections[1];
+
+    const aboutImg = about.querySelector(".img-container");
+    const aboutContent = about.querySelector(".about-content");
+    const aboutHeader = aboutContent.querySelector("h1");
+    const aboutParagraph = aboutContent.querySelector("p");
+
+    const aboutList = [aboutImg, aboutHeader, aboutParagraph];
 
     let lastScrollY = window.scrollY;
     let sectionObservable = false;
@@ -21,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     intro.scrollIntoView({ behavior: 'smooth' , block: 'start' });
 
     setTimeout(() => {
-        [aboutHeader, milestoneList1, milestoneList2].forEach(element => milestonesObserver.observe(element));
+        aboutList.forEach(element => aboutObserver.observe(element));
         sections.forEach((section, i) => {
             if (i !== 0) {
                 sectionObserver.observe(section);
@@ -48,41 +53,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    const milestonesObserver = new IntersectionObserver((entries) => {
+    const aboutObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                if (entry.target === milestoneList1 || entry.target === milestoneList2) {
-                    animateMilestones(entry.target);
-                } else {
-                    setTimeout(() => {
-                        entry.target.classList.add("slide-in");
-                    }, 250);
-                }
-                milestonesObserver.unobserve(entry.target);
-            }
+                setTimeout(() => {
+                    entry.target.classList.add("slide-in");
+                }, 
+                300 * aboutList.indexOf(entry.target));
+            };
         });
     }, { threshold: 0.9 });
 
-    function animateMilestones(list) {
-        const milestones = list.querySelectorAll('.milestone');
-        milestones.forEach((milestone, i) => {
-            let t;
-            if (list.id == "first-milestones") {
-                t = i == 1 ? 2 
-                    : i == 2 ? 1
-                    : 0;
-            } else {
-                t = i == 1 ? 0 
-                    : i == 2 ? 2
-                    : 1;
-            }
-
-            setTimeout(() => {
-                milestone.classList.add("slide-in");
-            }, 500 * t + 500);
-        });
-    }
- 
     function debounce(func, delay) {
         let timeout;
         return function(...args) {
